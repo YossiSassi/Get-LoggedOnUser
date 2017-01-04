@@ -1,6 +1,7 @@
-function global:Get-LoggedOnUsers {
+function global:Get-LoggedOnUser {
+# PS version: 2.0 (tested Win7+)
 # Written by: Yossi Sassi (yossis@protonmail.com) 
-# Version: 1.0 
+# Script version: 1.0 
 # Updated: January 3rd, 2017
 
 <# 
@@ -22,13 +23,13 @@ When specified, this switch shows the data collected in real time in the console
    
 .EXAMPLE
 
-PS C:\> Get-LoggedOnUsers -File c:\temp\users-report.log
+PS C:\> Get-LoggedOnUser -File c:\temp\users-report.log
 Sets the currently logged-on users report file to be saved at c:\temp\users-report.log.
 Default is c:\LoggedOn.txt.
 
 .EXAMPLE
 
-PS C:\> Get-LoggedOnUsers -ShowResultsToScreen
+PS C:\> Get-LoggedOnUser -ShowResultsToScreen
 Shows the data collected in real time, onto the screen, in addition to the log file.
 
 e.g.
@@ -115,14 +116,14 @@ foreach ($comp in $Computers)
      $member = $null
      $usersInGroup = $null
      } else # computer didn't respond to ping     
-      {$report += $($comp.properties.name) + "`tdidn't respond to ping - possibly OFFLINE"; $OfflineComputers += $($comp.properties.name)
-      if ($ShowResultsToScreen) {Write-Warning "$($comp.properties.name)`tdidn't respond to ping - possibly OFFLINE"}
+      {$report += $($comp.properties.name) + "`tdidn't respond to ping - possibly Offile or Port issue"; $OfflineComputers += $($comp.properties.name)
+      if ($ShowResultsToScreen) {Write-Warning "$($comp.properties.name)`tdidn't respond to ping - possibly  Offile or Port issue"}
       }
     }
 $report | Out-File $File 
 If ($OfflineComputers -ne $null) # If there were offline / Non-responsive computers
-{ $OfflineComputers | Out-File c:\OfflineComputers.txt
-  Write-Warning "Total of $($OfflineComputers.count) computers didn't respond.`nNon-Responding computers where saved into c:\OfflineComputers.txt." -ForegroundColor  
+{ $OfflineComputers | Out-File c:\NonRespondingComputers.txt
+  Write-Warning "Total of $($OfflineComputers.count) computers didn't respond.`nNon-Responding computers where saved into c:\NonRespondingComputers.txt." -ForegroundColor  
  }
 Write-Host "The full report was saved to $File" -ForegroundColor Cyan
 # Set back the system's current Error Action Preference
