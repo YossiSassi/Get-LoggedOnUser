@@ -1,4 +1,4 @@
-function global:Check-LoggedOnUsers {
+function global:Get-LoggedOnUsers {
 # Written by: Yossi Sassi (yossis@protonmail.com) 
 # Version: 1.0 
 # Updated: January 3rd, 2017
@@ -6,11 +6,11 @@ function global:Check-LoggedOnUsers {
 <# 
 .SYNOPSIS
 
-Checks for currently logged-on users on all domain computers, to see if they are local admins or not.
+Gets currently logged-on users on all domain computers, to see if they are local admins or not.
 
 .DESCRIPTION
 
-Checks for currently logged-on users (interactive logins) on all computer accounts in the domain, and reports whether the logged-on user is member of the local administrators group on that machine. This function does not require any external module, all code provided as is in the function.
+Gets currently logged-on users (interactive logins) on all computer accounts in the domain, and reports whether the logged-on user is member of the local administrators group on that machine. This function does not require any external module, all code provided as is in the function.
 
 .PARAMETER File
 
@@ -22,13 +22,13 @@ When specified, this switch shows the data collected in real time in the console
    
 .EXAMPLE
 
-PS C:\> Check-LoggedOnUsers -File c:\temp\users-report.log
+PS C:\> Get-LoggedOnUsers -File c:\temp\users-report.log
 Sets the currently logged-on users report file to be saved at c:\temp\users-report.log.
 Default is c:\LoggedOn.txt.
 
 .EXAMPLE
 
-PS C:\> Check-LoggedOnUsers -ShowResultsToScreen
+PS C:\> Get-LoggedOnUsers -ShowResultsToScreen
 Shows the data collected in real time, onto the screen, in addition to the log file.
 
 e.g.
