@@ -1,8 +1,8 @@
 function global:Get-LoggedOnUser {
 # PS version: 2.0 (tested Win7+)
 # Written by: Yossi Sassi (yossis@protonmail.com) 
-# Script version: 1.0 
-# Updated: January 3rd, 2017
+# Script version: 1.1 
+# Updated: February 22nd, 2017
 
 <# 
 .SYNOPSIS
@@ -92,10 +92,11 @@ $ErrorActionPreference = "silentlycontinue"
 $report = @()
 $report += "HostName`tLogged-On User or Host Status`tIs Admin"
 $OfflineComputers = @()
+filter Invoke-Ping {(New-Object System.Net.NetworkInformation.Ping).Send($_,5)}
 
 foreach ($comp in $Computers)
     {     
-     if (Test-Connection -Computer $Comp.Properties.dnshostname -Count 1 -Quiet) {        
+     if (($Comp.Properties.dnshostname | Invoke-Ping).status -eq "Success") {            
      $user = gwmi win32_computersystem -ComputerName $comp.Properties.dnshostname | select -ExpandProperty username 
      if ($user -eq $null) {$user = "No User logged On interactively"} 
         else # Check if local admin
