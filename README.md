@@ -1,8 +1,8 @@
 Gets currently logged-on users on domain computers, to see if they are local admins or not.
 
-# PS version: 2.0 (tested Win7+)
+PS version: 2.0 (tested Win7+)
 
-# Written by Yossi Sassi (yossis@protonmail.com) 
+Written by Yossi Sassi (yossis@protonmail.com) 
 
 .DESCRIPTION
 
