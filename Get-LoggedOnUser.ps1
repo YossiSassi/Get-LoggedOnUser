@@ -1,4 +1,3 @@
-function global:Get-LoggedOnUser {
 # PS version: 2.0 (tested Win7+)
 # Written by: Yossi Sassi (yossis@protonmail.com) 
 # Script version: 1.1 
@@ -129,4 +128,3 @@ If ($OfflineComputers -ne $null) # If there were offline / Non-responsive comput
 Write-Host "The full report was saved to $File" -ForegroundColor Cyan
 # Set back the system's current Error Action Preference
 $ErrorActionPreference = $CurrentEAP
-}
